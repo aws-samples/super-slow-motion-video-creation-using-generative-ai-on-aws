@@ -1,4 +1,4 @@
-# Guidance for Super Slow Motion Video Creation Using Generative AI on AWS 
+# Super Slow Motion Video Creation Using Generative AI on AWS 
 
 ## Table of Content
 
@@ -8,7 +8,7 @@
     - [Operating System](#operating-system)
 3. [Deployment Steps](#deployment-steps)
 4. [Deployment Validation](#deployment-validation)
-5. [Running the Guidance](#running-the-guidance)
+5. [Running the Example](#running-the-example)
 6. [Next Steps](#next-steps)
 7. [Cleanup](#cleanup)
 
@@ -37,7 +37,7 @@ The architecture diagram above provides an overview of the full end-to-end solut
 10. The state machine execution resumes where an AWS Lambda function **encodes all new frames to create a slow motion video and store in S3 bucket**
 
 ### Cost
-_You are responsible for the cost of the AWS services used while running this Guidance. As of December 2023, the cost for running this Guidance with the default settings and default sample video in the `US-East-1` is approximately `$3.50`._
+_You are responsible for the cost of the AWS services used while running this example. As of December 2023, the cost for running this example with the default settings and default sample video in the `US-East-1` is approximately `$3.50`._
 
 ## Prerequisites
 You need to have an AWS account. Make sure your AWS identity has the requisite permissions which includes ability to create SageMaker Resources (Domain, Model, and Endpoints) in addition to S3 access to upload model artifacts. Alternatively, you can attach the [AmazonSageMakerFullAccess](https://docs.aws.amazon.com/sagemaker/latest/dg/security-iam-awsmanpol.html#security-iam-awsmanpol-AmazonSageMakerFullAccess) managed policy to your IAM User or Role.
@@ -69,7 +69,7 @@ You need at least one `ml.g5.4xlarge` instance for inference, more if you want t
 9. In SageMaker Studio, clone this Git repository using the command below. More details on how to clone Git repository in SageMaker Studio is [here](https://docs.aws.amazon.com/sagemaker/latest/dg/studio-tasks-git.html).
 
 ```bash
-git clone https://github.com/aws-solutions-library-samples/guidance-for-super-slow-motion-video-creation-using-generative-ai-on-aws.git
+git clone https://github.com/aws-samples/super-slow-motion-video-creation-using-generative-ai-on-aws.git
 ```
 
 ## Deployment Validation
@@ -90,9 +90,9 @@ After successfully cloning the repo, following files and libraries will be downl
         └── utils.py
 ```
 
-## Running the Guidance
+## Running the Example
 
-1. cd to the repo folder ```guidance-for-super-slow-motion-video-creation-using-generative-ai-on-aws```
+1. cd to the repo folder ```super-slow-motion-video-creation-using-generative-ai-on-aws```
 
 2. open [slow-mo.ipynb](source/slow-mo.ipynb) notebook, and follow the instructions to run through each cell. 
 
@@ -101,7 +101,7 @@ After successfully cloning the repo, following files and libraries will be downl
 ## Next Steps
 To further enhance your solution at scale, there are several suggested next steps. First, create automated orchestration using AWS Step Functions to coordinate the workflow. Second, add an automated event trigger so that uploading a video to S3 will automatically trigger the orchestration. Third, incorporate AWS Batch jobs to split and assemble frames in order to maximize system parallelization. Finally, if you want to process 4K videos, you can adjust the model input parameters to split each 4K frame into 4 slices and then process each slice in parallel. Implementing these recommendations will allow you to scale your video processing pipeline to handle higher volumes with optimal performance. 
 ## Cleanup
-To avoid incurring AWS charges after you are done with testing the guidance, make sure you delete below resources-
+To avoid incurring AWS charges after you are done with testing the example, make sure you delete below resources-
 
 1.	Amazon SageMaker Studio Domain. 
 
