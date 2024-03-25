@@ -62,7 +62,7 @@ You need at least one `ml.g5.4xlarge` instance for inference, more if you want t
 
 4. On the **Create stack** page, Specify **template section**, select **Upload a template file**.
 
-5. Under **Upload a template file**, select **Choose file** and select the edited template from your local drive.
+5. Under **Upload a template file**, select **Choose file** and select the downloaded template from your local drive.
 
 6. Choose Next and follow the steps in Launch the stack. One of the input parameters before you launch the stack will be to chose VPC and subnets to host SageMaker Studio Domain. For getting started quickly, you can choose Default VPC. You can also select any other VPC which has internet connectivity.
   
