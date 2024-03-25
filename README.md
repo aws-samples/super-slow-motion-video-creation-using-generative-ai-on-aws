@@ -64,9 +64,11 @@ You need at least one `ml.g5.4xlarge` instance for inference, more if you want t
 
 6. Choose Next and follow the steps in Launch the stack.
   
-8. This will take a few minutes and set up a [SageMaker Studio Domain](https://docs.aws.amazon.com/sagemaker/latest/dg/sm-domain.html). Follow the instructions [here](https://docs.aws.amazon.com/sagemaker/latest/dg/studio-launch.html) to launch the Studio environment.
+7. This will take a few minutes and set up a [SageMaker Studio Domain](https://docs.aws.amazon.com/sagemaker/latest/dg/sm-domain.html). Follow the instructions [here](https://docs.aws.amazon.com/sagemaker/latest/dg/studio-launch.html) to launch the Studio environment. 
 
-9. In SageMaker Studio, clone this Git repository using the command below. More details on how to clone Git repository in SageMaker Studio is [here](https://docs.aws.amazon.com/sagemaker/latest/dg/studio-tasks-git.html).
+8. In SageMaker Studio, clone this Git repository using the command below. More details on how to clone Git repository in SageMaker Studio is [here](https://docs.aws.amazon.com/sagemaker/latest/dg/studio-tasks-git.html).
+
+Please note that above instructions are using SageMaker Studio Classic for this example. You can also use newly launched SageMaker Studio experience by following instructions at https://docs.aws.amazon.com/sagemaker/latest/dg/studio-updated.html and https://docs.aws.amazon.com/sagemaker/latest/dg/studio-updated-jl-user-guide.html  
 
 ```bash
 git clone https://github.com/aws-samples/super-slow-motion-video-creation-using-generative-ai-on-aws.git
