@@ -25,17 +25,17 @@ Original Video          |  Slow-Mo Video
 
 The architecture diagram above provides an overview of the full end-to-end solution. However, this sample focuses only on the core component highlighted in bold below. Users can reference the complete solution architecture to understand how this example fits into the bigger picture, and build on top of it as needed.
 
-1. DevOps engineer calls an Amazon API Gateway endpoint to create a model endpoint.
+1. Invoke an Amazon API Gateway RESTful API endpoint with AWS Identity and Access Management (IAM).
 2. Amazon API Gateway invokes an AWS Lambda function to process the request.
-3. AWS Lambda function uploads model artifacts (FILM model) and endpoint configuration to an Amazon Simple Storage Service (Amazon S3) bucket and creates an endpoint.
-4. On endpoint creation, Amazon SageMaker creates an Asynchronous Inference Endpoint with autoscaling feature.
-5. Operator upload a short video to an Amazon S3 bucket for processing.
+3. AWS Lambda function uploads model artifacts (FILM model) and endpoint configuration to an Amazon Simple Storage Service (Amazon S3) bucket and creates an Amazon SageMaker Asynchronous Inference endpoint.
+4. Amazon SageMaker Asynchronous Inference endpoint are used to run the FILM.
+5. Upload a short video to an Amazon S3 bucket for processing..
 6. An Amazon S3 event triggers an AWS Step Functions state machine execution through Amazon EventBridge to process the request.
 7. An AWS Lambda function extracts frames from the video and store them in S3 bucket.
-8. An AWS Lambda function creates an inference job by invoking the SageMaker Asynchronous inference endpoint where FILM model interpolates new frames. The state machine execution is on paused and waits for a job completion status.
+8. An AWS Lambda function creates an inference job by invoking the SageMaker Asynchronous inference endpoint where the FILM model interpolates new frames. The state machine execution is paused and waits for a job completion status.
 9. SageMaker Inference endpoint sends job status to Amazon Simple Notification Service (Amazon SNS).
-10. The state machine execution resumes where an AWS Lambda function encodes all new frames to create a slow motion video and store in S3 bucket.
-11. An Amazon S3 event sends the status to Amazon SNS to notify operator the slow motion video is complete.
+10. The state machine execution resumes where an AWS Lambda function encodes all new frames to create a slow motion video for storage in the S3 bucket.
+11. Finally, once the slow video creation is completed and uploaded to output S3 bucket, Amazon SNS notifies the operator or end user. 
 
 
 ### Cost
