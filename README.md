@@ -72,7 +72,7 @@ You need at least one `ml.g5.4xlarge` instance for inference, more if you want t
 
       ![](assets/jupyterlab-space.png)
 
-9. Select "Open JupyterLab". On the JupyterLab home page, open a new terminal window and clone the git repo.
+9. Select "Open JupyterLab". On the JupyterLab home page, open a new terminal window by selecting "File -> New -> Terminal". On terminal, clone the git repo by running below command.
 
 ```bash
 git clone https://github.com/aws-samples/super-slow-motion-video-creation-using-generative-ai-on-aws.git
