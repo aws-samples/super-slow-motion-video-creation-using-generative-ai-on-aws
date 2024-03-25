@@ -64,7 +64,7 @@ You need at least one `ml.g5.4xlarge` instance for inference, more if you want t
 
 5. Under **Upload a template file**, select **Choose file** and select the edited template from your local drive.
 
-6. Choose Next and follow the steps in Launch the stack. 
+6. Choose Next and follow the steps in Launch the stack. On the step to choose VPC, you can choose default VPC and subnets in your AWS account. 
   
 7. This will take a few minutes and set up a [SageMaker Studio Domain](https://docs.aws.amazon.com/sagemaker/latest/dg/sm-domain.html). Follow the instructions [here](https://docs.aws.amazon.com/sagemaker/latest/dg/studio-launch.html) to launch the Studio environment. 
 
