@@ -100,7 +100,7 @@ After successfully cloning the repo, following files and libraries will be downl
 
 ## Next Steps
 To further enhance your solution at scale, there are several suggested next steps. First, create automated orchestration using AWS Step Functions to coordinate the workflow. Second, add an automated event trigger so that uploading a video to S3 will automatically trigger the orchestration. Third, incorporate AWS Batch jobs to split and assemble frames in order to maximize system parallelization. Finally, if you want to process 4K videos, you can adjust the model input parameters to split each 4K frame into 4 slices and then process each slice in parallel. Implementing these recommendations will allow you to scale your video processing pipeline to handle higher volumes with optimal performance. 
-## Cleanup
+## Cleanup.
 To avoid incurring AWS charges after you are done with testing the example, make sure you delete below resources-
 
 1.	Amazon SageMaker Studio Domain. 
