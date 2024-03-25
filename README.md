@@ -64,11 +64,17 @@ You need at least one `ml.g5.4xlarge` instance for inference, more if you want t
 
 5. Under **Upload a template file**, select **Choose file** and select the edited template from your local drive.
 
-6. Choose Next and follow the steps in Launch the stack. One of the input parameters before you launch the stack will be to chose VPC and subnets to launch SageMaker Studio. Here, you can choose default VPC in your AWS Account or a VPC which you have created for running other workloads.
+6. Choose Next and follow the steps in Launch the stack. One of the input parameters before you launch the stack will be to chose VPC and subnets to host SageMaker Studio Domain. For getting started quickly, you can choose Default VPC. You can also select any other VPC which has internet connectivity.
   
-7. This will take a few minutes and set up a [SageMaker Studio Domain](https://docs.aws.amazon.com/sagemaker/latest/dg/sm-domain.html). Follow the instructions [here](https://docs.aws.amazon.com/sagemaker/latest/dg/studio-launch.html) to launch the Studio environment. 
+7. This will take a few minutes and set up a [SageMaker Studio Domain](https://docs.aws.amazon.com/sagemaker/latest/dg/sm-domain.html). Follow the instructions [here](https://docs.aws.amazon.com/sagemaker/latest/dg/studio-updated-launch.html#studio-updated-launch-console) to launch the Studio environment. 
 
-8. In SageMaker Studio, clone this Git repository using the command below. More details on how to clone Git repository in SageMaker Studio is [here](https://docs.aws.amazon.com/sagemaker/latest/dg/studio-tasks-git.html). Please note that these instructions are using SageMaker Studio Classic for this example. You can also use newly launched SageMaker Studio experience by following instructions at [this page](https://docs.aws.amazon.com/sagemaker/latest/dg/studio-updated.html) and [here](https://docs.aws.amazon.com/sagemaker/latest/dg/studio-updated-jl-user-guide.html).
+8. Create a JupyterLab space and access your JupyterLab environment following instructions [here](https://docs.aws.amazon.com/sagemaker/latest/dg/studio-updated-jl-user-guide.html#studio-updated-jl-user-guide-configure-space). 
+         - Under section "To create a space and open JupyterLab" and Step 6. choose Instance ml.g4dn.xlarge.
+         - Under section "To create a space and open JupyerLab" and Step 8. choose 100GB for storage. Below screenshot shows details.
+
+![](assets/jupyterlab-space.png)
+
+9. Select "Open JupyterLab". One JupyterLab home page, open a new terminal window and clone the git repo.
 
 ```bash
 git clone https://github.com/aws-samples/super-slow-motion-video-creation-using-generative-ai-on-aws.git
