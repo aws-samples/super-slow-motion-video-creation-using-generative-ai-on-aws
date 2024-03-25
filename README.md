@@ -52,7 +52,7 @@ You need at least one `ml.g5.4xlarge` instance for inference, more if you want t
 
 ## Deployment Steps
 
-1. To deploy the soltuion manually, download the [AWS CloudFormation template](deployment/cfn_template.txt) to your local hard drive.
+1. To deploy the soltuion manually, download the [AWS CloudFormation template](deployment/cfn_template.yaml) to your local hard drive.
 
 2. Sign in to the [AWS CloudFormation console](https://console.aws.amazon.com/cloudformation/home).
 
