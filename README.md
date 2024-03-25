@@ -70,7 +70,7 @@ You need at least one `ml.g5.4xlarge` instance for inference, more if you want t
 
 8. Create a JupyterLab space and access your JupyterLab environment following instructions [here](https://docs.aws.amazon.com/sagemaker/latest/dg/studio-updated-jl-user-guide.html#studio-updated-jl-user-guide-configure-space). Under section "To create a space and open JupyterLab" and Step 6. choose Instance ml.g4dn.xlarge. Under section "To create a space and open JupyerLab" and Step 8. choose 100GB for storage. Below screenshot shows details.
 
-        ![](assets/jupyterlab-space.png)
+      ![](assets/jupyterlab-space.png)
 
 9. Select "Open JupyterLab". On the JupyterLab home page, open a new terminal window and clone the git repo.
 
