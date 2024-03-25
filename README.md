@@ -68,7 +68,7 @@ You need at least one `ml.g5.4xlarge` instance for inference, more if you want t
   
 7. This will take a few minutes and set up a [SageMaker Studio Domain](https://docs.aws.amazon.com/sagemaker/latest/dg/sm-domain.html). Follow the instructions [here](https://docs.aws.amazon.com/sagemaker/latest/dg/studio-updated-launch.html#studio-updated-launch-console) to launch the Studio environment. 
 
-8. Create a JupyterLab space and access your JupyterLab environment following instructions under section ["To create a space and open JupyterLab"](https://docs.aws.amazon.com/sagemaker/latest/dg/studio-updated-jl-user-guide.html#studio-updated-jl-user-guide-configure-space). Under section "To create a space and open JupyterLab" and Step 6. choose Instance ml.g4dn.xlarge. Under section "To create a space and open JupyerLab" and Step 8. choose 100GB for storage. Below screenshot shows details.
+8. Create a JupyterLab space and access your JupyterLab environment following instructions at [page](https://docs.aws.amazon.com/sagemaker/latest/dg/studio-updated-jl-user-guide.html#studio-updated-jl-user-guide-configure-space) under section **To create a space and open JupyterLab**. Also, pay attention to **Step 6** choose Instance ml.g4dn.xlarge. For ** Step 8** choose 100GB for storage. Below screenshot shows details.
 
       ![](assets/jupyterlab-space.png)
 
