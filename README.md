@@ -31,10 +31,10 @@ The architecture diagram above provides an overview of the full end-to-end solut
 4. On endpoint creation, Amazon SageMaker creates an Asynchronous Inference Endpoint with autoscaling feature.
 5. Operator upload a short video to an Amazon S3 bucket for processing.
 6. An Amazon S3 event triggers an AWS Step Functions state machine execution through Amazon EventBridge to process the request.
-7. An AWS Lambda function **extracts frames from the video and store them in S3 bucket**
-8. An AWS Lambda function **creates an inference job by invoking the SageMaker Asynchronous inference endpoint where FILM model interpolates new frames. The state machine execution is on paused and waits for a job completion status**
+7. An AWS Lambda function extracts frames from the video and store them in S3 bucket.
+8. An AWS Lambda function creates an inference job by invoking the SageMaker Asynchronous inference endpoint where FILM model interpolates new frames. The state machine execution is on paused and waits for a job completion status.
 9. SageMaker Inference endpoint sends job status to Amazon Simple Notification Service (Amazon SNS).
-10. The state machine execution resumes where an AWS Lambda function **encodes all new frames to create a slow motion video and store in S3 bucket**
+10. The state machine execution resumes where an AWS Lambda function encodes all new frames to create a slow motion video and store in S3 bucket.
 11. An Amazon S3 event sends the status to Amazon SNS to notify operator the slow motion video is complete.
 
 
