@@ -42,7 +42,7 @@ def extract_frames(tar_obj):
 #
 # read_image, ported from codes/eval/util.py
 #
-async def read_image(filename: str) -> np.ndarray:
+def read_image(filename: str) -> np.ndarray:
     """Reads an sRgb 8-bit image.
 
     Args:
@@ -60,7 +60,7 @@ async def read_image(filename: str) -> np.ndarray:
 #
 # write_image, ported from codes/eval/util.py
 #
-async def write_image(filename: str, image: np.ndarray) -> str:
+def write_image(filename: str, image: np.ndarray) -> str:
     """Writes a float32 3-channel RGB ndarray image, with colors in range [0..1].
 
     Args:
@@ -173,8 +173,8 @@ def interpolate_recursively_from_memory(
 #
 # using the model to do frame interpolation
 #
-async def interpolate_frames(input_frame_dir='', 
-                       model_path='', 
+def interpolate_frames(input_frame_dir: str, 
+                       interpolator: interpolator_lib.Interpolator,
                        align=64, 
                        block_height=1, 
                        block_width=1,
@@ -193,33 +193,31 @@ async def interpolate_frames(input_frame_dir='',
     #
     # read image to memory async
     #
-    processes = [read_image(input_jpeg) for input_jpeg in input_jpeg_files]
-
-    #
-    # Intializing interpolator
-    #
-    _interpolator = interpolator_lib.Interpolator(model_path, 
-                                                  align, 
-                                                  [block_height, block_width])
+    jpeg_nparray = [read_image(input_jpeg) for input_jpeg in input_jpeg_files]
     
     #
     # wait for read images
     #
-    jpeg_nparray = await asyncio.gather(*processes)
+    # jpeg_nparray = await asyncio.gather(*processes)
     
   #
     # start interpolation process by calling interpolate recursively
     #
     t0 = time.time()
-    frames = list(interpolate_recursively_from_memory(jpeg_nparray, time_to_interpolate, _interpolator))
+    frames = list(interpolate_recursively_from_memory(jpeg_nparray, time_to_interpolate, interpolator))
     t1 = time.time()
     print(f">> interpolate_recursively_from_files: elapsed", t1 - t0)  
 
+    del jpeg_nparray
     #
     # write frames to output_frames directory
     #
     processes = [write_image(output_frame_dir / f"frame_{idx:07d}.jpg", frame) for idx, frame in enumerate(frames)]
-    await asyncio.gather(*processes)
+    # await asyncio.gather(*processes)
+    
+    del frames
+    del processes
+    
     t2 = time.time()
     print(f">> asyncio.write_image: {t2 - t1}")
     

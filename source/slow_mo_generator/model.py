@@ -10,23 +10,23 @@ import utils
 import random
 import asyncio
 
-is_initialized = False
+import interpolator as interpolator_lib
+
 s3_bucket = None
 s3_prefix = None
 model_path = "model/Style/saved_model"
+_interpolator = None
 
 def initialize_service(properties: dict):
     
-    global is_initialized
     global s3_bucket
     global s3_prefix
   
     
     s3_bucket = properties.get("s3_bucket")
     s3_prefix = properties.get("s3_prefix")
-    
     #
-    # copy model onto the instance
+    # check S3 location
     #
     try:
         subprocess.run(["/opt/djl/bin/s5cmd", "ls", f"s3://{s3_bucket}/{s3_prefix}/"], check=True, timeout=15)
@@ -34,35 +34,55 @@ def initialize_service(properties: dict):
         raise Exception(f"Unable to access s3://{s3_bucket}/{s3_prefix}/. Error message: {e.output}.")
     except Exception as e:
         raise Exception(f"Unable to access s3://{s3_bucket}/{s3_prefix}/. Error message: {e}.")
+
+    # Initialize interpolator
+    align = 64
+    block_height = 1
+    block_width = 1
+        
+        
+    _interpolator = interpolator_lib.Interpolator(model_path, 
+                                              64, 
+                                              [1, 1])
     
-    is_initialized = True
+    print("Interpolator loaded....")
+    
+    return _interpolator
 
 
 def handle(inputs: Input):
     
-    global is_initialized
+    global _interpolator
     global s3_bucket
     global s3_prefix
-   
+
+    # get property
     properties = inputs.get_properties()
 
-    if not is_initialized:
-        initialize_service(properties)
+   
+    if not _interpolator:
+        _interpolator = initialize_service(properties)
 
     if inputs.is_empty():
         return None
-    
+
+    # load input config and extract input frames
     tar_buffer = BytesIO(inputs.get_as_bytes())
-    
-    # extract input frames
+
     frame_dir, process_config = utils.extract_frames(tar_buffer)
+
+    # set the interpolator configuration
+    print(f"set interpolator configuration...")
+    _interpolator._align = process_config["align"]
+    _interpolator._block_shape = [process_config["block_height"],
+                                  process_config["block_width"]]
     
     print(f"extracted frames to here: {frame_dir}")
     # kick off interpolation process to generate new frames
     
-    slow_frame_dir = asyncio.run(utils.interpolate_frames(input_frame_dir=frame_dir, 
-                                                          model_path=model_path,
-                                                         **process_config))
+    slow_frame_dir = utils.interpolate_frames(input_frame_dir=frame_dir, 
+                                                          interpolator=_interpolator,
+                                                         **process_config)
         
     timeout = 30  
     
@@ -91,5 +111,5 @@ def handle(inputs: Input):
         print("Unexpected error:")
         print(e)
         status = "Failed"
-    
+
     return Output().add_as_json({"status":status, "output_location": output_s3_path})
